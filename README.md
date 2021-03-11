@@ -25,7 +25,7 @@ images:
     image: default-route-openshift-image-registry.apps.cluster-cc14.cc14.sandbox1490.opentlc.com/devspace/quickstartpython
 ```
 
-If an unknown certificate authority error occurs on the application pod after running devspace dev, the image url under deployments in the devspace yaml needs to be changed to the internal path to your application image.
+If an unknown certificate authority error occurs in the application pod after running devspace dev, the image url under deployments in the devspace yaml needs to be changed to the internal path to your application image.
 
 This will most likely be image-registry.openshift-image-registry.svc:5000/*namespace*/*application name*
 
@@ -45,15 +45,17 @@ deployments:
 While running devspace dev you will likely run into a permissions error when the image is being pushed to OpenShift's image registry.
 
 To fix this, you will need to modify the secret generated on the devspace targeted namespace. 
-Navigate to the Secrets sidebar menu within the openshift UI.
-Select the namespace you are attempting to use devspace on from the Project: dropdown menu.
-Find the devspace secret which will be similar to *devspace-auth-default-route-openshift-image-registry-#########*
-Click on the secret name to view the details. Once viewing the details select *Edit Secret* from the *Actions* dropdown menu at the top right.
-Input the desired user into the Username field.
 
-For the password, an API token is required. This can be retrieved by clicking on your username in the top right of the Openshift UI and selecting *Copy Login Command*.
-After logging in copy the token under *Your API token is* and paste it into the password field in the pull secret.
-click save.
+1. Navigate to the Secrets sidebar menu within the openshift UI.
+1. Select the namespace you are deploying to from the project dropdown menu.
+1. Find the devspace secret which will be similar to *devspace-auth-default-route-openshift-image-registry-#########*
+1. Click on the secret name to view the details. Once viewing the details select *Edit Secret* from the *Actions* dropdown menu at the top right.
+1. Input the desired user into the Username field.
+1. For the password, an API token is required. 
+2. This can be retrieved by clicking on your username in the top right of the Openshift UI and selecting *Copy Login Command*.
+2. After authenticating, copy the token under *Your API token is*
+1. paste the API token into the password field in the pull secret.
+1. click save.
 
 If you are using Kaniko as your building tool. You will need to add build configuration information to the devfile which can be found <Here> under the pullSecret section
 
