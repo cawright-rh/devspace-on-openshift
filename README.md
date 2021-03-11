@@ -1,4 +1,5 @@
 # Using Devspace with Openshift Internal Registry
+This repository uses the python example application from [devspace](https://devspace.sh/cli/docs/introduction)
 
 ## Devspace Initialization
 Initialization is not necessary if the devspace file already exists, the purpose of initializing is to generate the devspace file.
@@ -57,7 +58,7 @@ To fix this, you will need to modify the secret generated on the devspace target
 1. paste the API token into the password field in the pull secret.
 1. click save.
 
-If you are using Kaniko as your building tool. You will need to add build configuration information to the devfile which can be found <Here> under the pullSecret section
+If you are using Kaniko as your building tool. You will need to add build configuration information to the devfile which can be found [Here](https://devspace.sh/cli/docs/configuration/images/kaniko) under the pullSecret section
 
 Example
 ```
