@@ -1,7 +1,7 @@
 # Using Devspace with Openshift Internal Registry
-This repository uses the python example application from [devspace](https://devspace.sh/cli/docs/introduction)
+This repository uses the python example application from [devspace](https://devspace.sh/cli/docs/introduction) and kaniko as the image building tool
 
-This repository already contains the devspace.yaml, therefor `devspace init` does not need to be run and the devspace.yaml file can be modified instead.
+This repository already contains the devspace configuration file (devspace.yaml), therefor `devspace init` does not need to be run and the devspace.yaml file can be modified instead.
 
 If you choose to use the provided devspace.yaml file you will need to make the following changes
 1. The image url's will need to be changed to your cluster/namespace/application-name
