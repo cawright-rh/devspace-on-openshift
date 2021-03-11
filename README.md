@@ -52,8 +52,8 @@ To fix this, you will need to modify the secret generated on the devspace target
 1. Click on the secret name to view the details. Once viewing the details select *Edit Secret* from the *Actions* dropdown menu at the top right.
 1. Input the desired user into the Username field.
 1. For the password, an API token is required. 
-2. This can be retrieved by clicking on your username in the top right of the Openshift UI and selecting *Copy Login Command*.
-2. After authenticating, copy the token under *Your API token is*
+  1. This can be retrieved by clicking on your username in the top right of the Openshift UI and selecting *Copy Login Command*.
+  1. After authenticating, copy the token under *Your API token is*
 1. paste the API token into the password field in the pull secret.
 1. click save.
 
