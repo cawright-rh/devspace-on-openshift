@@ -1,0 +1,60 @@
+version: v1beta9
+images:
+  app:
+    image: default-route-openshift-image-registry.apps.cluster-cc14.cc14.sandbox1490.opentlc.com/devspace/quickstartpython
+    tags:
+    - latest
+    preferSyncOverRebuild: true
+    injectRestartHelper: true
+    appendDockerfileInstructions:
+    - USER root
+    build:
+      kaniko:
+        insecure: true
+        pullSecret: devspace-auth-default-route-openshift-image-registry-921df43ffc
+deployments:
+- name: quickstart-python
+  helm:
+    componentChart: true
+    values:
+      containers:
+      - image: image-registry.openshift-image-registry.svc:5000/devspace/quickstartpython
+      service:
+        ports:
+        - port: 8080
+dev:
+  ports:
+  - imageName: app
+    forward:
+    - port: 8080
+  open:
+  - url: http://localhost:8080
+  sync:
+  - imageName: app
+    excludePaths:
+    - .git/
+    uploadExcludePaths:
+    - Dockerfile
+    - devspace.yaml
+    onUpload:
+      restartContainer: true
+profiles:
+- name: production
+  description: ""
+  patches:
+  - op: remove
+    path: images.app.appendDockerfileInstructions
+  - op: remove
+    path: images.app.injectRestartHelper
+- name: interactive
+  description: ""
+  patches:
+  - op: add
+    path: dev.interactive
+    value:
+      defaultEnabled: true
+  - op: add
+    path: images.app.entrypoint
+    value:
+    - sleep
+    - "9999999999"
